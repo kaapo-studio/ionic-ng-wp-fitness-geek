@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "./../../environments/environment.prod";
-import { of } from "rxjs";
-import "rxjs/add/operator/map";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment.prod';
+import { of } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 const ENDPOINT_URL = environment.endpointURL;
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DataService {
   items: any[];
@@ -18,6 +18,7 @@ export class DataService {
   getPosts(): any {
     if (this.items) {
       /** The of operator accepts a number of items as parameters, and returns an Observable that emits each of
+      // tslint:disable-next-line: jsdoc-format
       these parameters, in order, as its emitted sequence. In this case, we will only be returning this.itms to any subscriber. */
       return of(this.items);
     } else {
@@ -27,7 +28,7 @@ export class DataService {
        The Map operator applies a function of your choosing to each item emitted by the source Observable,
        and returns an Observable that emits the returns of these function applicaitons. */
       return this.http
-        .get(ENDPOINT_URL + "wp/v2/posts?_embed")
+        .get(ENDPOINT_URL + 'wp/v2/posts?_embed')
         .map(this.processPostData, this);
     }
   }

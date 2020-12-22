@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
-import { HomePage } from "./home.page";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { HomePage } from './home.page';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe("HomePage", () => {
+describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
 
@@ -20,7 +20,7 @@ describe("HomePage", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

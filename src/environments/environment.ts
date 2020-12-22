@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpointURL: "https://fitnessgeek.ro/backend/wp-json/",
+  endpointURL: 'https://fitnessgeek.ro/backend/wp-json/',
 };
 
 /*

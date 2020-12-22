@@ -1,16 +1,17 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 
-import { HttpClientModule } from "@angular/common/http";
-import { DataService } from "./data.service";
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './data.service';
 
-describe("DataService", () => {
+describe('DataService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-    }),
+    })
   );
 
-  it("should be created", () => {
+  it('should be created', () => {
+    // tslint:disable-next-line: deprecation
     const service: DataService = TestBed.get(DataService);
     expect(service).toBeTruthy();
   });
