@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Blog </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngFor="let item of items">
+    <ion-img
+      *ngIf="item._embedded['wp:featuredmedia']"
+      [src]="item._embedded['wp:featuredmedia'][0].source_url"
+    >
+    </ion-img>
+    <ion-card-header>
+      <ion-card-subtitle> {{item.date | date:dateFormat}} </ion-card-subtitle>
+      <ion-card-title [innerHTML]="item.title.rendered"></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div [innerHTML]="item.excerpt.rendered"></div>
+      <div>
+        <ion-button
+          href="/blog/{{item.slug}}"
+          routerDirection="root"
+          color="primary"
+        >
+          Read more...
+        </ion-button>
+      </div>
+      Posted in W <br />
+      Tagged x, Y, Z
+    </ion-card-content>
+  </ion-card>
+  <ion-infinite-scroll
+    treshold="100px"
+    (ionInfinite)="getMorePosts($event)"
+    [disabled]="infiniteScrollDisabled()"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Se incarca postari noi..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

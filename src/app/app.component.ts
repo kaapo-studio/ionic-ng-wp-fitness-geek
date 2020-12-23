@@ -14,8 +14,18 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Home',
-      url: '/pages/home/Home',
+      url: '/home',
       icon: 'home',
+    },
+    {
+      title: 'Blog',
+      url: '/blog',
+      icon: 'albums',
+    },
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'finger-print',
     },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -36,7 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    const path = window.location.pathname.split('pages/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(
         (page) => page.title.toLowerCase() === path.toLowerCase()
