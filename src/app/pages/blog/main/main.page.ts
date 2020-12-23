@@ -10,9 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class MainPage implements OnInit {
   /** Gives us access to the InfiniteScroll component that we’ll  be using in the page view. */
-  @ViewChild(IonInfiniteScroll) infitineScroll: IonInfiniteScroll;
+  /** Gives us access to the InfiniteScroll component that we’ll  be using in the page view. */
+  @ViewChild(IonInfiniteScroll)
+  infitineScroll!: IonInfiniteScroll;
 
-  items: any[];
+  items: any[] = [];
   dateFormat = environment.dateFormat;
 
   constructor(public dataService: DataService) {}
@@ -25,7 +27,7 @@ export class MainPage implements OnInit {
 
   /** A new getMorePosts() function pretty much just proxies to the function of the same name that’s in the DataService.
    *  I uses this.infiniteScroll.complete() to remove the loading  spinner when it’s done doing its thing. */
-  getMorePosts(evt) {
+  getMorePosts(evt: any) {
     this.dataService.getMorePosts().subscribe((data: any[]) => {
       this.items = data;
       this.infitineScroll.complete();

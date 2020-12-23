@@ -1,7 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Login </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content> </ion-content>
+<ion-content padding>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <ion-item>
+      <ion-label color="primary"> Nume de utilizator </ion-label>
+      <ion-input
+        type="text"
+        formControlName="username"
+        placeholder="Introdu numele de utilizator"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary"> Parola </ion-label>
+      <ion-input
+        type="password"
+        formControlName="password"
+        placeholder="Introdu parola"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit">Autentificare</ion-button>
+  </form>
+</ion-content>

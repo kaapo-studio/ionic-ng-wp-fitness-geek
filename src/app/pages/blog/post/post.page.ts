@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { DataService } from '../../../shared/data.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { DataService } from '../../../shared/data.service';
 })
 export class PostPage implements OnInit {
   item: any;
+  dateFormat = environment.dateFormat;
 
   constructor(private route: ActivatedRoute, public dataService: DataService) {}
 

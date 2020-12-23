@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 import { of } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { AuthenticationService } from './authentication.service';
 
 const ENDPOINT_URL = environment.endpointURL;
 
@@ -20,7 +21,10 @@ export class DataService {
   If we don’t disable the component, it will try to fetch a page number that isn’t available and thus result in an error. */
   totalPages = 1;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public authenticationService: AuthenticationService
+  ) {}
 
   /**
    *  Gets a page of pots or all posts formerly fetched
@@ -44,9 +48,24 @@ export class DataService {
        which we can then subscribe to. Therefore, we can subscribe to the result of this method.
        The Map operator applies a function of your choosing to each item emitted by the source Observable,
        and returns an Observable that emits the returns of these function applicaitons. */
-      return this.http
-        .get(ENDPOINT_URL + 'wp/v2/posts?_embed', { observe: 'response' })
-        .map(this.processPostData, this);
+      const user = this.authenticationService.getUser();
+
+      if (user) {
+        return this.http
+          .get(
+            ENDPOINT_URL + 'wp/v2/posts?_embed&status=any&token=' + user.token,
+            {
+              observe: 'response',
+              headers: { Authorization: 'Bearer ' + user.token },
+            }
+          )
+          .map(this.processPostData, this);
+        console.log('is user');
+      } else {
+        return this.http
+          .get(ENDPOINT_URL + 'wp/v2/posts?_embed', { observe: 'response' })
+          .map(this.processPostData, this);
+      }
     }
   }
 
@@ -71,6 +90,7 @@ export class DataService {
     resp.body.forEach((item: any) => {
       this.items.push(item);
     });
+    console.log('processPostData', this.items);
     return this.items;
   }
 
