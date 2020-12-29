@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   endpointURL: 'https://fitnessgeek.ro/backend/wp-json/',
+  endpointGraphql: 'https://fitnessgeek.ro/backend/graphql/',
   dateFormat: 'd/M/yyyy',
 };
 

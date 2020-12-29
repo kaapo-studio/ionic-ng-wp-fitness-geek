@@ -7,17 +7,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-card *ngFor="let item of items">
-    <ion-img
-      *ngIf="item._embedded['wp:featuredmedia']"
-      [src]="item._embedded['wp:featuredmedia'][0].source_url"
-    ></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle> {{item.date | date:dateFormat}} </ion-card-subtitle>
-      <ion-card-title [innerHTML]="item.title.rendered"></ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div [innerHTML]="item.excerpt.rendered"></div>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error">Error :(</div>
+  <div *ngIf="rates">
+    <ion-card *ngFor="let rate of rates">
+      <p>{{ rate.currency }}: {{ rate.rate }}</p>
+    </ion-card>
+  </div>
 </ion-content>
