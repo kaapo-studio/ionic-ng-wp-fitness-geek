@@ -9,7 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  // tslint:disable-next-line: one-variable-per-declaration
+  // eslint-disable-next-line one-var
   let statusBarSpy: { styleDefault: any },
     splashScreenSpy: { hide: any },
     platformReadySpy: Promise<void>,
@@ -56,7 +56,7 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(9);
+    expect(menuItems.length).toEqual(5);
     expect(menuItems[0].textContent).toContain('Home');
   });
 
@@ -65,9 +65,9 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(9);
+    expect(menuItems.length).toEqual(5);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual(
-      '/home'
+      '/blog'
     );
   });
 });

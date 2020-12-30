@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
-    <ion-title> Blog </ion-title>
+    <ion-title> Tips and tricks </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
@@ -44,15 +44,4 @@
       >
     </ion-card-content>
   </ion-card>
-
-  <ion-infinite-scroll
-    treshold="100px"
-    (ionInfinite)="getMorePosts($event)"
-    [disabled]="infiniteScrollDisabled()"
-  >
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Se incarca postari noi..."
-    ></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>

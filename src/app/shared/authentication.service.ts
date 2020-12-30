@@ -43,7 +43,7 @@ export class AuthenticationService {
     return this.user;
   }
 
-  // tslint:disable-next-line: ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   setUser(user: any) {
     this.user = user;
   }

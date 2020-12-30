@@ -10,9 +10,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
-import { Apollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -30,15 +27,4 @@ import { HttpLink } from 'apollo-angular/http';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(apollo: Apollo, httpLink: HttpLink) {
-    const link = httpLink.create({
-      uri: '/graphql',
-      withCredentials: true,
-    });
-
-    apollo.create({
-      link,
-    });
-  }
-}
+export class AppModule {}

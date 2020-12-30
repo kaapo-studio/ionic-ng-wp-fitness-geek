@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -10,17 +10,56 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
+  public selectedAppIndex = 0;
+  public selectedCategoriesIndex = 0;
   public appPages = [
     {
       title: 'Home',
-      url: '/home',
+      url: '/blog',
       icon: 'home',
     },
     {
-      title: 'Blog',
-      url: '/blog',
-      icon: 'albums',
+      title: 'Fitness',
+      url: 'blog/categorie/fitness',
+      icon: 'fitness',
+    },
+    {
+      title: 'NUTRIȚIE',
+      url: 'blog/categorie/nutritie',
+      icon: 'nutrition',
+    },
+    {
+      title: 'LIFESTYLE',
+      url: 'blog/categorie/lifestyle',
+      icon: 'accessibility',
+    },
+    {
+      title: 'TIPS&TRICKS',
+      url: 'blog/categorie/tips-and-tricks',
+      icon: 'thumbs-up',
+    },
+  ];
+
+  public categoriesPages = [
+    {
+      title: 'Fitness',
+      url: '/blog/fitness',
+      icon: 'fitness',
+    },
+    {
+      title: 'NUTRIȚIE',
+      url: '/blog/nutritie',
+      icon: 'nutrition',
+    },
+    {
+      title: 'LIFESTYLE',
+      url: '/blog/lifestyle',
+      icon: 'accessibility',
+    },
+    {
+      title: 'MOTIVAȚIONAL',
+      url: '/blog/motivational',
+      icon: 'thumbs-up',
     },
     {
       title: 'Login',
@@ -28,12 +67,12 @@ export class AppComponent implements OnInit {
       icon: 'finger-print',
     },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private menu: MenuController
   ) {
     this.initializeApp();
   }
@@ -45,11 +84,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  closeMenu() {
+    this.menu.close();
+  }
+
   ngOnInit() {
     const path = window.location.pathname.split('pages/')[1];
+    const categoriesPath = window.location.pathname.split('pages/blog')[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(
+      this.selectedAppIndex = this.appPages.findIndex(
         (page) => page.title.toLowerCase() === path.toLowerCase()
+      );
+      this.selectedCategoriesIndex = this.categoriesPages.findIndex(
+        (page) => page.title.toLowerCase() === categoriesPath.toLowerCase()
       );
     }
   }

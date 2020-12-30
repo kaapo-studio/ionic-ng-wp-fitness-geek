@@ -14,8 +14,5 @@ export class PostPage implements OnInit {
 
   constructor(private route: ActivatedRoute, public dataService: DataService) {}
 
-  ngOnInit() {
-    const itemSlug = this.route.snapshot.paramMap.get('slug');
-    this.item = this.dataService.getPostBySlug(itemSlug);
-  }
+  ngOnInit() {}
 }
