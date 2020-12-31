@@ -101,6 +101,8 @@ export const GET_FITNESS_POSTS_WITH_EXCERPT = gql`
                 mediaItemUrl
               }
             }
+            slug
+            id
           }
         }
       }
@@ -134,6 +136,8 @@ export const GET_NUTRITIE_POSTS_WITH_EXCERPT = gql`
                 mediaItemUrl
               }
             }
+            slug
+            id
           }
         }
       }
@@ -166,6 +170,8 @@ export const GET_LIFESTYLE_POSTS_WITH_EXCERPT = gql`
                 mediaItemUrl
               }
             }
+            slug
+            id
           }
         }
       }
@@ -199,6 +205,8 @@ export const GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT = gql`
                 mediaItemUrl
               }
             }
+            slug
+            id
           }
         }
       }

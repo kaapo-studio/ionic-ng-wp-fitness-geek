@@ -1,4 +1,11 @@
-import { GET_ALL_POSTS_WITH_EXCERPT } from './../Graphql/querys';
+import {
+  GET_ALL_POSTS_WITH_CONTENT,
+  GET_ALL_POSTS_WITH_EXCERPT,
+  GET_FITNESS_POSTS_WITH_EXCERPT,
+  GET_LIFESTYLE_POSTS_WITH_EXCERPT,
+  GET_NUTRITIE_POSTS_WITH_EXCERPT,
+  GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT,
+} from './../Graphql/querys';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
@@ -35,12 +42,35 @@ export class DataService {
     }).valueChanges;
   }
 
-  getAllPostsWithExcerpt() {
+  getAllPostsWithContent() {
     return this.apollo.watchQuery<any>({
-      query: GET_ALL_POSTS_WITH_EXCERPT,
+      query: GET_ALL_POSTS_WITH_CONTENT,
     }).valueChanges;
   }
 
+  getAllFitnessPostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_FITNESS_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllNutritiePostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_NUTRITIE_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllLifestylePostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_LIFESTYLE_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllTipsAndTricksPostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
   /**
    *  Gets a page of pots or all posts formerly fetched
    */

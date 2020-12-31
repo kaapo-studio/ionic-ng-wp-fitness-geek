@@ -40,13 +40,14 @@ export class LifestylePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.queryPostsSubscription = this.dataService
-      .getAllPostsWithExcerpt()
+      .getAllLifestylePostsWithExcerpt()
       .subscribe(({ data, loading }) => {
         this.presentLoading();
-        this.posts = data.posts.edges;
+        this.posts = data.category.posts.edges;
         this.loading = loading;
       });
   }
+
   ngOnDestroy() {
     this.queryPostsSubscription.unsubscribe();
   }

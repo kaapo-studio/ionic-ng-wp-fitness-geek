@@ -3,14 +3,14 @@
     <ion-buttons slot="start">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
-    <ion-title> fitness </ion-title>
+    <ion-title> Fitness </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
   <ion-card *ngFor="let post of posts; let i = index">
     <ion-img
-      *ngIf="post.node.featuredImage.node.sourceUrl"
-      [src]="post.node.featuredImage.node.sourceUrl"
+      *ngIf="post.node.featuredImage.node.mediaItemUrl"
+      [src]="post.node.featuredImage.node.mediaItemUrl"
       [alt]="post.node.title"
     >
     </ion-img>
@@ -36,10 +36,8 @@
         </ion-label>
       </ion-item>
       <span class="postCategory"
-        ><a
-          href="/blog/{{post.node.categories.edges[0].node.slug}}"
-          routerDirection="root"
-          >{{post.node.categories.edges[0].node.name}}</a
+        ><a href="/blog/categorie/fitness" routerDirection="root"
+          >Fitness</a
         ></span
       >
     </ion-card-content>

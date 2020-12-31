@@ -40,10 +40,11 @@ export class FitnessPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.queryPostsSubscription = this.dataService
-      .getAllPostsWithExcerpt()
+      .getAllFitnessPostsWithExcerpt()
       .subscribe(({ data, loading }) => {
         this.presentLoading();
-        this.posts = data.posts.edges;
+
+        this.posts = data.category.posts.edges;
         this.loading = loading;
       });
   }

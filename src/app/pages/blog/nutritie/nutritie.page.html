@@ -3,14 +3,17 @@
     <ion-buttons slot="start">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
-    <ion-title> nutritie </ion-title>
+    <ion-title> Nutritie </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
+  <div *ngIf="!posts.length">
+    <h1>Nu sunt postari in aceasta categorie</h1>
+  </div>
   <ion-card *ngFor="let post of posts; let i = index">
     <ion-img
-      *ngIf="post.node.featuredImage.node.sourceUrl"
-      [src]="post.node.featuredImage.node.sourceUrl"
+      *ngIf="post.node.featuredImage.node.mediaItemUrl"
+      [src]="post.node.featuredImage.node.mediaItemUrl"
       [alt]="post.node.title"
     >
     </ion-img>
@@ -36,10 +39,8 @@
         </ion-label>
       </ion-item>
       <span class="postCategory"
-        ><a
-          href="/blog/{{post.node.categories.edges[0].node.slug}}"
-          routerDirection="root"
-          >{{post.node.categories.edges[0].node.name}}</a
+        ><a href="/blog/categorie/nutritie" routerDirection="root"
+          >Nutritie</a
         ></span
       >
     </ion-card-content>

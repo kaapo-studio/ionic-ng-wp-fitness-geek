@@ -40,10 +40,10 @@ export class NutritiePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.queryPostsSubscription = this.dataService
-      .getAllPostsWithExcerpt()
+      .getAllNutritiePostsWithExcerpt()
       .subscribe(({ data, loading }) => {
         this.presentLoading();
-        this.posts = data.posts.edges;
+        this.posts = data.category.posts.edges;
         this.loading = loading;
       });
   }
