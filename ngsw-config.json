@@ -9,9 +9,13 @@
         "files": [
           "/favicon.ico",
           "/index.html",
+          "/svg/**",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
         ]
       }
     },
@@ -24,6 +28,30 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "postsGraphl",
+      "urls": ["https://fitnessgeek.ro/backend/graphql/"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 1000,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "postsJson",
+      "urls": ["https://fitnessgeek.ro/backend/wp-json/"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 1000,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]

@@ -40,7 +40,12 @@
                 "input": "src/scss/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "rxjs/add/operator/map",
+              "graphql-tag",
+              "zen-observable"
+            ]
           },
           "configurations": {
             "production": {
