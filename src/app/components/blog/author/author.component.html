@@ -1,0 +1,10 @@
+<figure>
+  <img
+    [src]="avatarUrl"
+    [alt]="'autor' + ' ' + authorFirstName + ' ' + authorLastName"
+  />
+  <figcaption>
+    <span>{{ authorFirstName + ' ' + authorLastName }}</span>
+    <time><ng-content select="[date]"></ng-content></time>
+  </figcaption>
+</figure>

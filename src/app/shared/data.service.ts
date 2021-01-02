@@ -5,7 +5,7 @@ import {
   GET_LIFESTYLE_POSTS_WITH_EXCERPT,
   GET_NUTRITIE_POSTS_WITH_EXCERPT,
   GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT,
-} from './../Graphql/querys';
+} from '../graphql/querys';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';

@@ -3,33 +3,43 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title [innerHTML]="item.title?.rendered"></ion-title>
+    <ion-title [innerHTML]="post?.node.title"></ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content padding>
-  <ion-card>
-    <ion-img
-      *ngIf="item._embedded['wp:featuredmedia']"
-      [src]="item._embedded['wp:featuredmedia'][0].source_url"
-    >
-    </ion-img>
-    <ion-card-header>
-      <ion-card-subtitle> {{item.date | date:dateFormat}} </ion-card-subtitle>
-      <ion-card-title [innerHTML]="item.title?.rendered"></ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div [innerHTML]="item.content.rendered"></div>
-      <div>
-        <ion-button
-          href="/blog/{{item.slug}}"
-          routerDirection="root"
-          color="primary"
-        >
-          Read more...
-        </ion-button>
-      </div>
-      Posted in W <br />
-      Tagged x, Y, Z
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="8">
+        <article class="postPage">
+          <header>
+            <ion-img
+              *ngIf="post?.node.featuredImage.node.sourceUrl"
+              [src]="post?.node.featuredImage.node.sourceUrl"
+              [alt]="post?.node?.title"
+              class="postPage__image"
+            ></ion-img>
+
+            <div class="postPage__category">
+              <span>{{post?.node.categories.edges[0].node.name}}</span>
+            </div>
+
+            <h1 [innerHTML]="post?.node?.title" class="postPage__title"></h1>
+          </header>
+          <div [innerHTML]="post?.node.content" class="postPage__content"></div>
+          <footer *ngIf="post?.node.author.node.avatar.url">
+            <app-author
+              [avatarUrl]="post?.node.author.node.avatar.url"
+              [authorFirstName]="post?.node.author.node.firstName"
+              [authorLastName]="post?.node.author.node.lastName"
+            >
+              <ng-container date
+                >{{post?.node.date | date:dateFormat}}</ng-container
+              >
+            </app-author>
+          </footer>
+        </article>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
