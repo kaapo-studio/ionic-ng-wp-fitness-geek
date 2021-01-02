@@ -1,9 +1,18 @@
+import {
+  GET_ALL_POSTS_WITH_CONTENT,
+  GET_ALL_POSTS_WITH_EXCERPT,
+  GET_FITNESS_POSTS_WITH_EXCERPT,
+  GET_LIFESTYLE_POSTS_WITH_EXCERPT,
+  GET_NUTRITIE_POSTS_WITH_EXCERPT,
+  GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT,
+} from '../graphql/querys';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 import { of } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { AuthenticationService } from './authentication.service';
+import { Apollo } from 'apollo-angular';
 
 const ENDPOINT_URL = environment.endpointURL;
 
@@ -23,9 +32,45 @@ export class DataService {
 
   constructor(
     private http: HttpClient,
-    public authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService,
+    private apollo: Apollo
   ) {}
 
+  getAllPostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_ALL_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllPostsWithContent() {
+    return this.apollo.watchQuery<any>({
+      query: GET_ALL_POSTS_WITH_CONTENT,
+    }).valueChanges;
+  }
+
+  getAllFitnessPostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_FITNESS_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllNutritiePostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_NUTRITIE_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllLifestylePostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_LIFESTYLE_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
+
+  getAllTipsAndTricksPostsWithExcerpt() {
+    return this.apollo.watchQuery<any>({
+      query: GET_TIPS_AND_TRICKS_POSTS_WITH_EXCERPT,
+    }).valueChanges;
+  }
   /**
    *  Gets a page of pots or all posts formerly fetched
    */
@@ -38,9 +83,7 @@ export class DataService {
      * which WordPress gives to tell us how many  total pages are available.
      */
     if (this.items.length > 0) {
-      /** The of operator accepts a number of items as parameters, and returns an Observable that emits each of
-      // tslint:disable-next-line: jsdoc-format
-      these parameters, in order, as its emitted sequence. In this case, we will only be returning this.itms to any subscriber. */
+      /* eslint-disable-next-line , jsdoc/check-alignment, jsdoc/check-indentation, jsdoc/newline-after-description, ,  */
       return of(this.items);
     } else {
       /** http.get() creates an observable. */
@@ -56,6 +99,7 @@ export class DataService {
             ENDPOINT_URL + 'wp/v2/posts?_embed&status=any&token=' + user.token,
             {
               observe: 'response',
+              // eslint-disable-next-line @typescript-eslint/naming-convention
               headers: { Authorization: 'Bearer ' + user.token },
             }
           )
@@ -95,10 +139,10 @@ export class DataService {
   }
 
   // Get post by slug
-  getPostBySlug(slug): any {
-    console.log('getPostBySlug', this.items);
-    return this.items.find((item) => item.slug === slug);
-  }
+  // getPostBySlug(slug): any {
+  //   console.log('getPostBySlug', this.items);
+  //   return this.items.find((item) => item.slug === slug);
+  // }
 
   // hasMorePosts() convenience function to return true or false depending on whether more pages are available to be loaded.
   hasMorePost() {

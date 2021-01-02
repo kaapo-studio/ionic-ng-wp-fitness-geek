@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,29 +9,33 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  // tslint:disable-next-line: one-variable-per-declaration
+  // eslint-disable-next-line one-var
   let statusBarSpy: { styleDefault: any },
     splashScreenSpy: { hide: any },
     platformReadySpy: Promise<void>,
     platformSpy: { ready: any };
 
-  beforeEach(async(() => {
-    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
-    splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
-    platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+  beforeEach(
+    waitForAsync(() => {
+      statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
+      splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
+      platformReadySpy = Promise.resolve();
+      platformSpy = jasmine.createSpyObj('Platform', {
+        ready: platformReadySpy,
+      });
 
-    TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [
-        { provide: StatusBar, useValue: statusBarSpy },
-        { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
-      ],
-      imports: [RouterTestingModule.withRoutes([])],
-    }).compileComponents();
-  }));
+      TestBed.configureTestingModule({
+        declarations: [AppComponent],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        providers: [
+          { provide: StatusBar, useValue: statusBarSpy },
+          { provide: SplashScreen, useValue: splashScreenSpy },
+          { provide: Platform, useValue: platformSpy },
+        ],
+        imports: [RouterTestingModule.withRoutes([])],
+      }).compileComponents();
+    })
+  );
 
   it('should create the app', async () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -52,7 +56,7 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(9);
+    expect(menuItems.length).toEqual(5);
     expect(menuItems[0].textContent).toContain('Home');
   });
 
@@ -61,9 +65,9 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(9);
+    expect(menuItems.length).toEqual(5);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual(
-      '/home'
+      '/blog'
     );
   });
 });

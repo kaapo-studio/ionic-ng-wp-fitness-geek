@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Nutritie </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="!posts.length">
+    <h1>Nu sunt postari in aceasta categorie</h1>
+  </div>
+  <ion-card *ngFor="let post of posts; let i = index">
+    <ion-img
+      *ngIf="post.node.featuredImage.node.mediaItemUrl"
+      [src]="post.node.featuredImage.node.mediaItemUrl"
+      [alt]="post.node.title"
+    >
+    </ion-img>
+    <ion-card-header>
+      <a href="/blog/{{post.node.slug}}" routerDirection="root">
+        <ion-card-subtitle> {{post.date | date:dateFormat}} </ion-card-subtitle>
+        <ion-card-title [innerHTML]="post.node.title"></ion-card-title>
+      </a>
+    </ion-card-header>
+    <ion-card-content>
+      <p [innerHTML]="post.node.excerpt"></p>
+      <ion-item lines="none" detail="false">
+        <ion-avatar>
+          <img [src]="post.node.author.node.avatar.url" />
+        </ion-avatar>
+        <ion-label>
+          <strong
+            >{{post.node.author.node.firstName}}
+            {{post.node.author.node.lastName}}</strong
+          >
+          <br />
+          {{post.node.date | date: dateFormat}}
+        </ion-label>
+      </ion-item>
+      <span class="postCategory"
+        ><a href="/blog/categorie/nutritie" routerDirection="root"
+          >Nutritie</a
+        ></span
+      >
+    </ion-card-content>
+  </ion-card>
+</ion-content>

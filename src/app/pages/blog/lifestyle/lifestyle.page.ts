@@ -1,24 +1,25 @@
-import { OnDestroy } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { IonInfiniteScroll, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { DataService } from '../../../shared/data.service';
+import { DataService } from 'src/app/shared/data.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.page.html',
-  styleUrls: ['./post.page.scss'],
+  selector: 'app-lifestyle',
+  templateUrl: './lifestyle.page.html',
+  styleUrls: ['./lifestyle.page.scss'],
 })
-export class PostPage implements OnInit, OnDestroy {
-  loading = true;
-  post: any;
+export class LifestylePage implements OnInit, OnDestroy {
+  @ViewChild(IonInfiniteScroll)
+  infitineScroll!: IonInfiniteScroll;
+
   dateFormat = environment.dateFormat;
+  posts: any[] = [];
+  loading = true;
+
   private queryPostsSubscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
     public dataService: DataService,
     public loadingController: LoadingController
   ) {}
@@ -39,22 +40,10 @@ export class PostPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.queryPostsSubscription = this.dataService
-      .getAllPostsWithContent()
+      .getAllLifestylePostsWithExcerpt()
       .subscribe(({ data, loading }) => {
         this.presentLoading();
-
-        const posts = data.posts.edges;
-
-        const path = this.route.snapshot.params.slug;
-
-        const postFiltred = posts.filter(
-          (post: { node: { slug: any } }) => post.node.slug === path
-        );
-
-        postFiltred.map((post: any) => (this.post = post));
-
-        console.log('this.post', this.post);
-
+        this.posts = data.category.posts.edges;
         this.loading = loading;
       });
   }

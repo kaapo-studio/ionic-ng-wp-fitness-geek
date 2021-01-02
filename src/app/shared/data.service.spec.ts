@@ -11,7 +11,7 @@ describe('DataService', () => {
   );
 
   it('should be created', () => {
-    // tslint:disable-next-line: deprecation
+    // eslint-disable-next-line import/no-deprecated
     const service: DataService = TestBed.get(DataService);
     expect(service).toBeTruthy();
   });
