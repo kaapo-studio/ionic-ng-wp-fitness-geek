@@ -274,6 +274,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/service-worker@~11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-11.0.5.tgz#437d5a76737794184710ae8c83ee17630881d062"
+  integrity sha512-5H3wJD9vQzhJqNes5N9fKmJp7ftv7UlqJZHewbwfZKd3xta7+mHXGFelMIdzsvb0WGkqPrW1mUgL0sIQ9DYKOg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@apollo/client@^3.3.6":
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.6.tgz#f359646308167f38d5bc498dfc2344c888400093"
